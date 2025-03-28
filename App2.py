@@ -1,8 +1,5 @@
 import streamlit as st
 import pickle
-import sklearn
-
-
 def get_sepal_length():
     sepal_length = st.text_input("Sepal Length of IRIS")
     return sepal_length
