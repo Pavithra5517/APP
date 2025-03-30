@@ -2,6 +2,7 @@ import streamlit as st
 from tensorflow.keras.models import load_model
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
+classes={0:"Iris Setosa",1:"Iris Versicolor",2:"Iris Virginica"}
 le=LabelEncoder()
 def get_sepal_length():
     sepal_length = st.text_input("Sepal Length of IRIS")
@@ -21,10 +22,10 @@ def get_petal_width():
 
 def predict_species(sl,sw,pl,pw):
     loaded_model =load_model("mlp_model.h5")
-    new_data = [[float(sl),float(sw),float(pl),float(pw)]]
+    new_data =np.array([[float(sl),float(sw),float(pl),float(pw)]])
     pred = loaded_model.predict(new_data)
     pred_class=np.argmax(pred, axis=1)
-    prediction=le.classes_[pred_class]
+    prediction=classes[int(pred_class)]
     st.write("Prediction with new data: ")
     st.write(prediction)
     
@@ -32,7 +33,7 @@ def predict_species(sl,sw,pl,pw):
 
 
 if __name__ == "__main__":
-    st.title('IRIS Species prediction with Decision Tree model 2025')
+    st.title('IRIS Species prediction with MLP model 2025')
     st.image('iris.png')    
     sepal_length = get_sepal_length()
     sepal_width = get_sepal_width()
