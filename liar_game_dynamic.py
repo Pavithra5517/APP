@@ -3,7 +3,7 @@ import random
 import openai
 
 # Replace with your own key or integrate securely
-openai.api_key = "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"
+openai.api_key = "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"
 
 categories = {
     "foods": [
